@@ -1,14 +1,29 @@
 import React, { Component } from 'react';
 
 class AddProject extends Component {
+    constructor(props){
+        super(props);
+        this.state= {
+            newProject: {}
+        }
+    }
+    
     static defaultProps = {
         categories: ['Web Design', 'Web Dev', 'Mobile Dev']
     }
     
-    handleSubmit(e) {
-        console.log('submitted');
-        
+    handleSubmit(e) {        
         e.preventDefault();
+        
+        if(this.refs.title.value === '')
+            alert('Title required')
+        else
+            this.setState({
+                newProject: {
+                    title: this.refs.title.value,
+                    category: this.refs.category.value
+                }
+            })
     }
     
     render() {
@@ -19,7 +34,7 @@ class AddProject extends Component {
         return (
             <div>
                 <h3>Add Project</h3>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit.bind(this)}>
                     <div>
                         <label>Title</label><br />
                         <input type="text" ref="title"/>
