@@ -30,7 +30,7 @@ class AddProject extends Component {
     
     render() {
         let categoryOptions = this.props.categories.map(category => {
-            return <option key={category} value="category">{category}</option> 
+            return <option key={category} value={category}>{category}</option> 
         });
         
         return (
